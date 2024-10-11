@@ -61,11 +61,11 @@ check_docker() {
   fi
 }
 
-# Step 4: Pull Docker image
-pull_docker_image() {
-  printf "\nPulling Docker image next for test work set up."
+# Step 4: Building Docker image
+build_docker_image() {
+  printf "\nBuilding Docker image next for test work set up."
   printf "\n"
-  docker pull marketsquare/robotframework-browser
+  docker build -t test-work .
   if [ $? -ne 0 ]; then
     printf "\nFailed to pull Docker image for test work. Stopping."
     printf "\n*************************"
@@ -73,7 +73,7 @@ pull_docker_image() {
     exit 1
   else
     printf "\n"
-    printf "\nDocker image pulled successfully."
+    printf "\nDocker image built successfully."
     printf "\n"
   fi
 }
@@ -91,14 +91,15 @@ check_os
 prompt_step "checking Docker is installed"
 check_docker
 
-# Step 4: Pull Docker image
-prompt_step "pulling Docker image for test work"
-pull_docker_image
+# Step 4: Building Docker image for test work
+prompt_step "Building Docker image for test work"
+build_docker_image
 printf "\n"
 printf "\nDONE."
 printf "\nCheck README.md file for instructions to run test work in container."
-printf "\nThe docker image to be used is from repository 'marketsquare/robotframework-browser'"
+printf "\nThe docker image to be used based on 'marketsquare/robotframework-browser'"
 printf "\nand images can be found from host with command: docker images"
+printf "\nThe build image is named 'test-work'."
 printf "\nSee more info using docker from: https://docs.docker.com/reference/cli/docker/container/run/"
 printf "\n*************************"
 printf "\n"

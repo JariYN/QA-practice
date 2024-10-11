@@ -22,20 +22,20 @@ command steps from terminal:
 sh check-set-test-work.sh
 ```
 
-2) run test container based on pulled docker image
+2) run test container from built docker image
 ```
-docker run --rm -v $(pwd)/test/:/test --ipc=host marketsquare/robotframework-browser:latest bash -c "robot --outputdir /test/output /test"
+docker run --rm -v $(pwd)/test/:/test --ipc=host test-work:latest bash -c "robot --outputdir /test/output /test"
 ```
 3) check test results from host folder:
 ./test/output/report.html
 
 NOTE.
-* docker image is pulled from docker hub
+* docker image is built from Dockerfile (takes ~10 to 15 minutes depending on network)
 * docker image is based on robot framework browser image
 If the script for some reason does not work, manual set up is the following:
-1) pull docker image
+1) build docker image
 ```
-docker pull marketsquare/robotframework-browser:latest
+docker build -t test-work:latest .
 ```
 2) check images on host
 ```
@@ -44,10 +44,10 @@ docker images
 3) run test container based on pulled docker image
 ```
 docker run --rm -
--v $(pwd)/test/:/test --ipc=host marketsquare/robotframework-browser:latest bash -c "robot --outputdir /test/output /test"
+-v $(pwd)/test/:/test --ipc=host test-work:latest bash -c "robot --outputdir /test/output /test"
 ```
 
 If you want to run test container in interactive mode, run:
 ```
-docker run -it --rm -v $(pwd)/test/:/test --ipc=host marketsquare/robotframework-browser:latest bash
+docker run -it --rm -v $(pwd)/test/:/test --ipc=host marketsquare/test-work:latest bash
 ```

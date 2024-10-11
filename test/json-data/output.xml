@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.12.7 on linux)" generated="2024-10-11T11:26:25.941482" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Json" source="/test/json-data/test_json.robot">
+<test id="s1-t1" name="Test Response From Web Service - all expected users in data" line="15">
+<kw name="GET">
+<msg time="2024-10-11T11:26:26.017378" level="FAIL">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</msg>
+<var>${response}</var>
+<arg>${service_url}</arg>
+<arg>expected_status=200</arg>
+<status status="FAIL" start="2024-10-11T11:26:26.017342" elapsed="0.000085">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</status>
+</kw>
+<kw name="Count Users" owner="parse_json">
+<var>${users_count}</var>
+<arg>${response}</arg>
+<doc>Parse the given JSON data and count the number of users.</doc>
+<status status="NOT RUN" start="2024-10-11T11:26:26.018055" elapsed="0.000033"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${users_count}</arg>
+<arg>10</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2024-10-11T11:26:26.018251" elapsed="0.000025"/>
+</kw>
+<doc>Test that the expected data is received from API response.
+Checks that expected amount of users are received in JSON.</doc>
+<status status="FAIL" start="2024-10-11T11:26:26.015323" elapsed="0.003351">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</status>
+</test>
+<test id="s1-t2" name="Test Response From Web Service - user specific data correct" line="22">
+<kw name="GET">
+<msg time="2024-10-11T11:26:26.021135" level="FAIL">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</msg>
+<var>${response}</var>
+<arg>${service_url}</arg>
+<arg>expected_status=200</arg>
+<status status="FAIL" start="2024-10-11T11:26:26.021087" elapsed="0.000108">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</status>
+</kw>
+<kw name="Get User By Id" owner="parse_json">
+<var>${users_data}</var>
+<arg>${response}</arg>
+<arg>${test_user_id}</arg>
+<doc>Parse the given JSON data and return user data for the specified ID.</doc>
+<status status="NOT RUN" start="2024-10-11T11:26:26.021402" elapsed="0.000025"/>
+</kw>
+<doc>Test that the expected data is received from API response.
+Checks that given user id has expected data in JSON.</doc>
+<status status="FAIL" start="2024-10-11T11:26:26.019038" elapsed="0.003219">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</status>
+</test>
+<doc>Testing a web service using Robot Framework
+Test cases check that JSON data is returned from web service as expected.</doc>
+<status status="FAIL" start="2024-10-11T11:26:25.942467" elapsed="0.080408"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Test Json">Test Json</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-10-11T11:26:26.012843" level="ERROR">Error in file '/test/json-data/test_json.robot' on line 4: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'six.moves'
+Traceback (most recent call last):
+  File "/home/pwuser/.local/lib/python3.12/site-packages/RequestsLibrary/__init__.py", line 1, in &lt;module&gt;
+    from .DeprecatedKeywords import DeprecatedKeywords
+  File "/home/pwuser/.local/lib/python3.12/site-packages/RequestsLibrary/DeprecatedKeywords.py", line 6, in &lt;module&gt;
+    from RequestsLibrary import utils
+  File "/home/pwuser/.local/lib/python3.12/site-packages/RequestsLibrary/utils.py", line 5, in &lt;module&gt;
+    from requests.status_codes import codes
+  File "/usr/lib/python3/dist-packages/requests/__init__.py", line 43, in &lt;module&gt;
+    import urllib3
+  File "/usr/lib/python3/dist-packages/urllib3/__init__.py", line 7, in &lt;module&gt;
+    from .connectionpool import HTTPConnectionPool, HTTPSConnectionPool, connection_from_url
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 11, in &lt;module&gt;
+    from .exceptions import (
+  File "/usr/lib/python3/dist-packages/urllib3/exceptions.py", line 2, in &lt;module&gt;
+    from six.moves.http_client import IncompleteRead as httplib_IncompleteRead
+PYTHONPATH:
+  /home/pwuser/.local/bin
+  /usr/lib/python312.zip
+  /usr/lib/python3.12
+  /usr/lib/python3.12/lib-dynload
+  /home/pwuser/.local/lib/python3.12/site-packages
+  /usr/local/lib/python3.12/dist-packages
+  /usr/lib/python3/dist-packages</msg>
+</errors>
+</robot>
